@@ -3,6 +3,15 @@
  */
 package ar.edu.unju.fi.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
 import org.springframework.stereotype.Component;
 
 /**
@@ -12,11 +21,19 @@ import org.springframework.stereotype.Component;
  */
 
 @Component
+@Entity
+@Table(name = "ROLES")
 public class Rol {
 	
-	private Integer id;
+	@Id
+	@Column(name= "id_nombre_rol")
 	private String nombreRol;
+	
+	@Column(name= "descripcion")
 	private String descripcion;
+	
+	@OneToMany(mappedBy = "rol", cascade = CascadeType.ALL)
+	private List<PersonalSalud> personalSalud;
 	
 	/**
 	 * Constructores
@@ -30,28 +47,13 @@ public class Rol {
 	 * @param nombreRol
 	 * @param descripcion
 	 */
-	public Rol(Integer id, String nombreRol, String descripcion) {
+	public Rol(String nombreRol, String descripcion) {
 		super();
-		this.id = id;
 		this.nombreRol = nombreRol;
 		this.descripcion = descripcion;
 	}
 	
 	//GEtters y Setters
-
-	/**
-	 * @return the id
-	 */
-	public Integer getId() {
-		return id;
-	}
-
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(Integer id) {
-		this.id = id;
-	}
 
 	/**
 	 * @return the nombreRol
@@ -81,9 +83,23 @@ public class Rol {
 		this.descripcion = descripcion;
 	}
 
+	/**
+	 * @return the personalSalud
+	 */
+	public List<PersonalSalud> getPersonalSalud() {
+		return personalSalud;
+	}
+
+	/**
+	 * @param personalSalud the personalSalud to set
+	 */
+	public void setPersonalSalud(List<PersonalSalud> personalSalud) {
+		this.personalSalud = personalSalud;
+	}
+
 	@Override
 	public String toString() {
-		return "Rol [id=" + id + ", nombreRol=" + nombreRol + ", descripcion=" + descripcion + "]";
+		return "Rol [nombreRol=" + nombreRol + ", descripcion=" + descripcion + "]";
 	}
 	
 }

@@ -1,20 +1,40 @@
 
 package ar.edu.unju.fi.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
 import org.springframework.stereotype.Component;
 
 /**
- * Clase que representa un personal de salud (Director, testeador, vacunador)
+ * Clase que representa un barrio de la provincia
  * @author Torrejon Cristian
- * @version 1.0
+ * @version 2.0
  */
 
 @Component
+@Entity
+@Table(name = "BARRIOS")
 public class Barrio {
 	
-	private Integer id;
+	@Id
+	@Column(name = "id_nombre")
 	private String nombre;
+	
+	@Column(name = "descripcion")
 	private String descripcion;
+	
+	@OneToMany(mappedBy = "barrio", cascade = CascadeType.ALL)
+	private List<TesteoPersona> testeoPersona;
+	
+	@OneToMany(mappedBy = "barrio", cascade = CascadeType.ALL)
+	private List<VacunacionPersona> vacunacionPersona;
 	
 	/**
 	 * Constructores
@@ -29,9 +49,8 @@ public class Barrio {
 	 * @param nombre
 	 * @param descripcion
 	 */
-	public Barrio(Integer id, String nombre, String descripcion) {
+	public Barrio(String nombre, String descripcion) {
 		super();
-		this.id = id;
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 	}
@@ -40,20 +59,6 @@ public class Barrio {
 	 * Getters y Setters
 	 */
 	
-	/**
-	 * @return the id
-	 */
-	public Integer getId() {
-		return id;
-	}
-
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
 	/**
 	 * @return the nombre
 	 */
@@ -82,9 +87,37 @@ public class Barrio {
 		this.descripcion = descripcion;
 	}
 
+	/**
+	 * @return the testeoPersona
+	 */
+	public List<TesteoPersona> getTesteoPersona() {
+		return testeoPersona;
+	}
+
+	/**
+	 * @param testeoPersona the testeoPersona to set
+	 */
+	public void setTesteoPersona(List<TesteoPersona> testeoPersona) {
+		this.testeoPersona = testeoPersona;
+	}
+
+	/**
+	 * @return the vacunacionPersona
+	 */
+	public List<VacunacionPersona> getVacunacionPersona() {
+		return vacunacionPersona;
+	}
+
+	/**
+	 * @param vacunacionPersona the vacunacionPersona to set
+	 */
+	public void setVacunacionPersona(List<VacunacionPersona> vacunacionPersona) {
+		this.vacunacionPersona = vacunacionPersona;
+	}
+
 	@Override
 	public String toString() {
-		return "Barrio [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + "]";
+		return "nombre=" + nombre + ", descripcion=" + descripcion + "]";
 	}
 	
 

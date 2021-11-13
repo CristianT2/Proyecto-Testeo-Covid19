@@ -5,28 +5,60 @@ package ar.edu.unju.fi.model;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
 import org.springframework.stereotype.Component;
 
 /**
  * Clase que presenta una persona testeada
  * @author Torrejon Cristian
- * @version 1.0
+ * @version 2.0
  */
 
 @Component
+@Entity
+@Table(name = "TESTEOS")
 public class TesteoPersona {
 	
 	//Atributos
 	
+	@Id
+	@Column(name = "id_dni")
 	private String documento;
+	
+	@Column(name = "nombre")
 	private String nombre;
+	
+	@Column(name = "apellido")
 	private String apellido;
+	
+	@Column(name = "telefono")
 	private String telefono;
+	
+	@Column(name = "email")
 	private String email;
+	
+	@ManyToOne()
+	@JoinColumn(name = "barrio_id")
 	private Barrio barrio;
+	
+	@Column(name = "direccion")
 	private String direccion;
+	
+	@Column(name = "resultado")
 	private String resultado;
+	
+	@Column(name = "fecha_hora")
 	private LocalDateTime fechaHora;
+	
+	@ManyToOne()
+	@JoinColumn(name = "personal_salud_id")
+	private PersonalSalud personalSalud;
 	
 	/**
 	 * Constructores 
@@ -35,7 +67,7 @@ public class TesteoPersona {
 	public TesteoPersona() {
 
 	}
-
+		
 	/**
 	 * @param documento
 	 * @param nombre
@@ -46,9 +78,10 @@ public class TesteoPersona {
 	 * @param direccion
 	 * @param resultado
 	 * @param fechaHora
+	 * @param personalSalud
 	 */
-	public TesteoPersona(String documento, String nombre, String apellido, String telefono, String email,
-			 Barrio barrio, String direccion, String resultado, LocalDateTime fechaHora) {
+	public TesteoPersona(String documento, String nombre, String apellido, String telefono, String email, Barrio barrio,
+			String direccion, String resultado, LocalDateTime fechaHora, PersonalSalud personalSalud) {
 		super();
 		this.documento = documento;
 		this.nombre = nombre;
@@ -58,9 +91,11 @@ public class TesteoPersona {
 		this.barrio = barrio;
 		this.direccion = direccion;
 		this.resultado = resultado;
-		this.setFechaHora(fechaHora);
+		this.fechaHora = fechaHora;
+		this.personalSalud = personalSalud;
 	}
-		
+
+
 	//Getters y Setters
 
 	/**
@@ -189,11 +224,27 @@ public class TesteoPersona {
 		this.fechaHora = fechaHora;
 	}
 
+	/**
+	 * @return the personalSalud
+	 */
+	public PersonalSalud getPersonalSalud() {
+		return personalSalud;
+	}
+
+	/**
+	 * @param personalSalud the personalSalud to set
+	 */
+	public void setPersonalSalud(PersonalSalud personalSalud) {
+		this.personalSalud = personalSalud;
+	}
+
 	@Override
 	public String toString() {
 		return "TesteoPersona [documento=" + documento + ", nombre=" + nombre + ", apellido=" + apellido + ", telefono="
 				+ telefono + ", email=" + email + ", barrio=" + barrio + ", direccion=" + direccion + ", resultado="
-				+ resultado + ", fechaHora=" + fechaHora + "]";
+				+ resultado + ", fechaHora=" + fechaHora + ", personalSalud=" + personalSalud + "]";
 	}
+	
+	
 	
 }
