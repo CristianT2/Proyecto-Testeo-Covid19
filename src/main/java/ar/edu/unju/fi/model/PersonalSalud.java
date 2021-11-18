@@ -19,7 +19,7 @@ import org.springframework.stereotype.Component;
 /**
  * Clase que representa un personal de salud (Director, testeador, vacunador)
  * @author Torrejon Cristian
- * @version 1.0
+ * @version 2.0
  */
 
 @Component
@@ -42,6 +42,12 @@ public class PersonalSalud {
 	
 	@Column(name = "apellido")
 	private String apellido;
+	
+	@Column(name = "email")
+	private String email;
+	
+	@Column(name = "telefono")
+	private String telefono;
 	
 	@ManyToOne()
 	@JoinColumn(name = "rol_id")
@@ -68,8 +74,10 @@ public class PersonalSalud {
 	 * @param nombre
 	 * @param apellido
 	 * @param rol
+	 * @param email 
+	 * @param telefono 
 	 */
-	public PersonalSalud(Integer id, String usuario, String password, String nombre, String apellido, Rol rol) {
+	public PersonalSalud(Integer id, String usuario, String password, String nombre, String apellido, Rol rol, String email, String telefono) {
 		super();
 		this.id = id;
 		this.usuario = usuario;
@@ -77,6 +85,8 @@ public class PersonalSalud {
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.rol = rol;
+		this.email = email;
+		this.telefono = telefono;
 	}
 	
 	//Getters y Setters
@@ -152,6 +162,34 @@ public class PersonalSalud {
 	}
 	
 	/**
+	 * @return the email
+	 */
+	public String getEmail() {
+		return email;
+	}
+
+	/**
+	 * @param email the email to set
+	 */
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	/**
+	 * @return the telefono
+	 */
+	public String getTelefono() {
+		return telefono;
+	}
+
+	/**
+	 * @param telefono the telefono to set
+	 */
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+	
+	/**
 	 * @return the rol
 	 */
 	public Rol getRol() {
@@ -196,9 +234,7 @@ public class PersonalSalud {
 	@Override
 	public String toString() {
 		return "PersonalSalud [id=" + id + ", usuario=" + usuario + ", password=" + password + ", nombre=" + nombre
-				+ ", apellido=" + apellido + ", rol=" + rol + "]";
+				+ ", apellido=" + apellido + ", email=" + email + ", telefono=" + telefono + ", rol=" + rol + "]";
 	}
-	
-	
 	
 }
