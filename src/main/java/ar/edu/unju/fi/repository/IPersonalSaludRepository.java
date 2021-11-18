@@ -7,13 +7,13 @@ import org.springframework.data.repository.CrudRepository;
 
 import ar.edu.unju.fi.model.PersonalSalud;
 
-public interface IPersonalSaludReepository extends CrudRepository<PersonalSalud, Integer>{
+public interface IPersonalSaludRepository extends CrudRepository<PersonalSalud, Integer>{
 	
 	public List<PersonalSalud> findAll();
 	public Optional<PersonalSalud> findById(Integer id);
 	public List<PersonalSalud> findByApellidoLike(String apellido);
-	public List<PersonalSalud> findByRolRolLike(String rol);
-	public List<PersonalSalud> findByApellidoAndRolRolLike(String apellido, String rol);
+	public List<PersonalSalud> findByRolLike(String rol);
+	public List<PersonalSalud> findByApellidoAndRolLike(String apellido, String rol);
 	
 
 }
