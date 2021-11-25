@@ -8,11 +8,15 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.stereotype.Component;
 
@@ -27,28 +31,37 @@ import org.springframework.stereotype.Component;
 @Table(name = "PERSONAL_SALUD")
 public class PersonalSalud {
 	
+	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_personal_salud")
 	private Integer id;
 	
+	@NotEmpty(message = "Ingrese un nombre de usuario.")
 	@Column(name = "usuario")
 	private String usuario;
 	
+	@NotEmpty(message = "Ingrese una contraseña.")
 	@Column(name = "contraseña")
 	private String password;
 	
+	@NotEmpty(message = "Ingrese su/s nombre/s.")
 	@Column(name = "nombre")
 	private String nombre;
 	
+	@NotEmpty(message = "Ingrese su apellido.")
 	@Column(name = "apellido")
 	private String apellido;
 	
+	@NotEmpty(message = "Ingrese su email.")
 	@Column(name = "email")
 	private String email;
 	
+	@NotEmpty(message = "Ingrese un número telefonico.")
 	@Column(name = "telefono")
 	private String telefono;
 	
+	@NotNull(message = "Seleccione un rol.")
 	@ManyToOne()
 	@JoinColumn(name = "rol_id")
 	private Rol rol;

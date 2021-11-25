@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 import org.springframework.stereotype.Component;
 
@@ -25,10 +26,12 @@ import org.springframework.stereotype.Component;
 @Table(name = "ROLES")
 public class Rol {
 	
+	@NotEmpty(message = "Ingrese el rol o cargo")
 	@Id
 	@Column(name= "id_nombre_rol")
 	private String nombreRol;
 	
+	@NotEmpty(message = "Ingrese una descripcion del rol o cargo")
 	@Column(name= "descripcion")
 	private String descripcion;
 	
