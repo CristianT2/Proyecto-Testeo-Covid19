@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.stereotype.Component;
 
@@ -27,35 +29,44 @@ public class TesteoPersona {
 	
 	//Atributos
 	
+	@NotEmpty(message = "Ingrese su número de documento.")
 	@Id
 	@Column(name = "id_dni")
 	private String documento;
 	
+	@NotEmpty(message = "Ingrese su/s nombre/s.")
 	@Column(name = "nombre")
 	private String nombre;
 	
+	@NotEmpty(message = "Ingrese su/s apellido/s.")
 	@Column(name = "apellido")
 	private String apellido;
 	
+	@NotEmpty(message = "Ingrese su número de teléfono.")
 	@Column(name = "telefono")
 	private String telefono;
 	
+	@NotEmpty(message = "Ingrese su email.")
 	@Column(name = "email")
 	private String email;
 	
+	@NotNull(message = "Seleccione una opcion.")
 	@ManyToOne()
 	@JoinColumn(name = "barrio_id")
 	private Barrio barrio;
 	
+	@NotEmpty(message = "Ingrese su dirección.")
 	@Column(name = "direccion")
 	private String direccion;
 	
+	@NotEmpty(message = "Ingrese el resultado del testeo.")
 	@Column(name = "resultado")
 	private String resultado;
 	
 	@Column(name = "fecha_hora")
 	private LocalDateTime fechaHora;
 	
+	@NotNull(message = "Seleccione una opcion.")
 	@ManyToOne()
 	@JoinColumn(name = "personal_salud_id")
 	private PersonalSalud personalSalud;

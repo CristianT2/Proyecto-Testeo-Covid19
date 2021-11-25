@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 import org.springframework.stereotype.Component;
 
@@ -23,6 +24,7 @@ import org.springframework.stereotype.Component;
 @Table(name = "BARRIOS")
 public class Barrio {
 	
+	@NotEmpty(message = "Ingrese el nombre del barrio.")
 	@Id
 	@Column(name = "id_nombre")
 	private String nombre;
