@@ -8,12 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unju.fi.model.Barrio;
@@ -47,6 +45,7 @@ public class BarrioController {
 			String msj = "El objeto se guardó correctamente en la base de datos.";
 			model.addAttribute("mensaje", msj);
 			model.addAttribute("barrio", barrioService.getBarrio());
+			barrioService.addBarrio(barrio);
 			
 			return modelView;
 		}
@@ -61,7 +60,7 @@ public class BarrioController {
 		return "listabarrios";
 	}
 	
-	@PutMapping("/barrio/editar/{nombre}")
+	@GetMapping("/barrio/editar/{nombre}")
 	public ModelAndView editarBarrio(@PathVariable String nombre, Model model) {
 		
 		Optional<Barrio> barrio = barrioService.getBarrio(nombre);
@@ -71,12 +70,12 @@ public class BarrioController {
 		return modelView;
 	}
 	
-	@DeleteMapping("/barrio/eliminar/{nombre}")
+	@GetMapping("/barrio/eliminar/{nombre}")
 	public String eliminarBarrio(Model model, @PathVariable String nombre) {
 		
 		barrioService.deleteBarrio(nombre);
 		
-		return "redirect:/listabarrios";
+		return "redirect:/barrio/lista";
 	}
 	
 	@GetMapping("/barrio/seleccionar/{nombre}")

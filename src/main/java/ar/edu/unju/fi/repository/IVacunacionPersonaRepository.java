@@ -11,7 +11,7 @@ public interface IVacunacionPersonaRepository extends CrudRepository<VacunacionP
 
 	public List<VacunacionPersona> findAll();
 	public Optional<VacunacionPersona> findByDocumento(String documento);
-	public List<VacunacionPersona> findByBarrioLike(String barrio);
-	public List<VacunacionPersona> findByVacunaLike(String vacuna);
-	public List<VacunacionPersona> findByBarrioAndVacunaLike(String barrio, String vacuna);
+	public List<VacunacionPersona> findByBarrioNombreLike(String barrio);
+	public List<VacunacionPersona> findByVacunaNombreLike(String vacuna);
+	public List<VacunacionPersona> findByBarrioNombreAndVacunaNombreLike(String barrio, String vacuna);
 }

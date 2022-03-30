@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:insert="layout/head :: head">
+		<meta content="text/html" charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	</head>
+	<body>
+		<div></div>
+		<div th:if="${mensaje!=null}" class="alert alert-success alert-dismissible fade show" role="alert">
+		  	<strong th:text="${mensaje}"></strong><a class="alert-link" href="/vacuna/lista"> Ver tabla</a>
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+		</div>
+		<div class="container">
+			<div class= "row justify-content-md-center">
+				<div class= "col-md-9">
+					<div class="card col-md-11">
+						<h2 class="card-header text-center fw-bold">Registrar Vacuna</h2>
+					  	<div class="card-body">
+					    	<form th:action="@{/vacuna/guardar}" th:object="${vacuna}" method="POST" enctype="multipart/form-data">
+					    		<div class="row mb-3">
+									<label for="nombre" class="col-sm-3 col-form-label fw-bold ps-4">Nombre</label>
+								    <div class="col-sm-9">
+								    	<!-- Message validation -->
+										<div class="d-flex align-items-center" th:if="${#fields.hasErrors('nombre')}">
+											<i class="bi bi-exclamation-circle ps-2" style="color:red"></i>
+											<span class="form-text text-danger ps-1" th:errors="*{nombre}" ></span>
+										</div>
+								    	<input type="text" class="form-control rounded-pill" th:field="*{nombre}" id="nombre" placeholder="Ingrese el nombre de la vacuna " title="Ingrese el nombre de la vacuna"> 									    	
+								    </div>
+								</div>
+								<div class="row mb-3">
+									<label for="descripcion" class="col-sm-3 col-form-label fw-bold ps-4">Descripción</label>
+									<div class="col-sm-9">
+										<!-- Message validation -->
+										<div class="d-flex align-items-center" th:if="${#fields.hasErrors('descripcion')}">
+											<i class="bi bi-exclamation-circle ps-2" style="color:red"></i>
+											<span class="form-text text-danger ps-1" th:errors="*{descripcion}" ></span>
+										</div>
+										<textarea class="form-control" th:field="*{descripcion}" id="descripcion" placeholder="Ingrese una descripcion de la vacuna" title="Ingrese una descripcion de la vacuna"></textarea>																	
+									</div>
+								</div>
+								<div class="row mb-3">
+									<label for="image" class="col-sm-3 col-form-label fw-bold ps-4">Imagen</label>
+									<div class="col-sm-9">
+										<input type="file" name="file"
+											class="rounded-pill form-control" id="image">
+									</div>
+								</div>
+					    		<div class="pt-2 text-center">
+									<button type="reset"
+										class="btn btn-danger rounded-pill">
+										Cancelar <i class="bi bi-x-circle-fill"></i>
+									</button>
+									<button type="submit"
+										class="btn btn-success rounded-pill">
+										Guardar <i class="bi bi-check-circle-fill"></i>
+									</button>
+								</div>
+					    	</form>
+					  	</div>
+					</div>
+				</div>
+				<div class="col-md-3 bg-dark">
+					
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+
+
+								

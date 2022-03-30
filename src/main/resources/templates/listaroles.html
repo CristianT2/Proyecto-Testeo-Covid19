@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:insert="layout/head :: head">
+		<meta content="text/html" charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	</head>
+	<body>
+		<div class="container">
+			<div th:if="${mensajeElim!=null}" class="alert alert-danger alert-dismissible fade show col-md-9 ms-1" role="alert">
+				<div class="d-flex align-items-center">
+					<i class="bi bi-exclamation-triangle-fill"></i>
+					<h4 class="alert-heading ps-2">Atencion!!</h4>
+				</div>
+				<p th:text="${mensajeElim}"></p>
+				<hr>
+				<a class="alert-link" th:href="@{/rol/eliminar/}+${nombreRol}">Confirmar</a>
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
+			<a th:href="@{/rol/nuevo}" class="ms-2">
+				<button type="button" class="btn btn-primary btn-sm">Registrar Rol</button>
+			</a>
+			<div class="row justify-content-md-center">
+				<div class="col-md-11">
+					<h2 class="p-2 fw-bolder">Lista de Roles</h2>
+					<table class="table table-bordered table-hover">
+					 	<thead class="text-center table-light fs-5">
+							<tr>
+	                        	<th scope="col">Rol</th>
+								<th scope="col">Descripción</th>
+								<th scope="col">Acciones</th>
+	                        </tr>		
+					  	</thead>
+					  	<tbody>
+					    	<tr th:each="rol:${roles}" class="text-center">
+								<td th:text="${rol.nombreRol}"></td>
+								<td th:text="${rol.descripcion}"></td>
+	                            <td >
+									<div class="btn-group btn-group-sm" role="group">
+										<a th:href="@{/rol/editar/}+${rol.nombreRol}" type="button">
+											<i class="bi bi-pencil-fill pe-2"></i>
+										</a>
+										<a th:href="@{/rol/seleccionar/}+${rol.nombreRol}" type="button">
+												<i class="bi bi-trash-fill ps-2" style="color:red"></i>
+												
+										</a>		
+									</div>
+								</td>                            
+	                   	 	</tr>
+					  	</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

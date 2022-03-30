@@ -10,12 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -80,13 +78,13 @@ public class TesteoPersonaController {
 	@GetMapping("/testeos/lista")
 	public String getlistaTesteosPage(Model model) {
 		
-		model.addAttribute("testeoPersona", testPersonaService.getTesteoPersona());
-		model.addAttribute("testeosPersonas", testPersonaService.getPersonasTesteadas());
+		model.addAttribute("personaTesteada", testPersonaService.getTesteoPersona());
+		model.addAttribute("personasTesteadas", testPersonaService.getPersonasTesteadas());
 		
 		return "listatesteos";
 	}
 	
-	@PutMapping("/testeos/editar/{documento}")
+	@GetMapping("/testeos/editar/{documento}")
 	public ModelAndView editarPersonaTesteada(@PathVariable String documento, Model model) {
 		
 		this.barrios = barrioService.getBarrios();
@@ -100,12 +98,12 @@ public class TesteoPersonaController {
 		return modelView;
 	}
 	
-	@DeleteMapping("/testeos/eliminar/{documento}")
+	@GetMapping("/testeos/eliminar/{documento}")
 	public String eliminarPersonaTesteada(@PathVariable String documento) {
 		
 		testPersonaService.deleteTesteo(documento);
 		
-		return "redirect:/listatesteos";
+		return "redirect:/testeos/lista";
 	}
 	
 	@GetMapping("/testeos/seleccionar/{documento}")

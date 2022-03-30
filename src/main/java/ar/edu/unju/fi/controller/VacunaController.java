@@ -8,12 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -35,7 +33,7 @@ public class VacunaController {
 		return "newvacuna";
 	}
 	
-	@PostMapping("/vacuna/guadar")
+	@PostMapping("/vacuna/guardar")
 	public ModelAndView guardarNewVacuna(Model model, @RequestParam("file") MultipartFile file, @Valid @ModelAttribute(name = "vacuna") Vacuna vacuna, BindingResult result) {
 		
 		ModelAndView modelView;
@@ -63,7 +61,7 @@ public class VacunaController {
 		return "listavacunas";
 	}
 	
-	@PutMapping("/vacuna/editar{nombre}")
+	@GetMapping("/vacuna/editar/{nombre}")
 	public ModelAndView editarVacuna(Model model, @PathVariable String nombre) {
 		
 		Optional<Vacuna> vacuna = vacunaService.getVacuna(nombre);
@@ -73,7 +71,7 @@ public class VacunaController {
 		return modelView;
 	}
 	
-	@DeleteMapping("/vacuna/eliminar/{nombre}")
+	@GetMapping("/vacuna/eliminar/{nombre}")
 	public String eliminarVacuna(@PathVariable String nombre) {
 		
 		vacunaService.deleteVacuna(nombre);
@@ -86,7 +84,7 @@ public class VacunaController {
 		
 		Optional<Vacuna> vacuna = vacunaService.getVacuna(nombre);
 		String  msj = "Estas seguro que quieres eliminar este registro: "+vacuna.get().getNombre();
-		model.addAttribute("msjEliminar", msj);
+		model.addAttribute("mensajeElim", msj);
 		model.addAttribute("vacuna", vacuna);
 		model.addAttribute("vacunas", vacunaService.getVacunas());
 		

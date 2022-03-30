@@ -56,12 +56,14 @@ public class PersonalSaludServiceImp implements IPersonalSaludService{
 		List<PersonalSalud> personal = new ArrayList<PersonalSalud>();
 		
 		if(!apellido.isEmpty() && !rol.isEmpty()) {
-			personal = personalSaludRepository.findByApellidoAndRolLike(apellido, rol);
+			personal = personalSaludRepository.findByApellidoAndRolNombreRolLike(apellido, rol);
 		}else if(!apellido.isEmpty() && rol.isEmpty()){
 			personal = personalSaludRepository.findByApellidoLike(apellido);
 		}else if(apellido.isEmpty() && !rol.isEmpty()) {
-			personal = personalSaludRepository.findByRolLike(rol);
-		}
+			personal = personalSaludRepository.findByRolNombreRolLike(rol);
+		}else if(apellido.isEmpty() && rol.isEmpty()) {
+			personal = personalSaludRepository.findAll();
+		}	
 		
 		return personal;
 	}

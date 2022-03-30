@@ -1,0 +1,28 @@
+
+body{
+	background-color: #ffffff!important;
+}
+.card{
+	border-radius: 1.25rem!important;
+}
+.card-header{
+	background-image: radial-gradient(circle at 50% -5.03%, #d0fff8 0, #bdfff6 10%, #a6fff4 20%, #8cfff3 30%, #6cfbf2 40%, #3cf2f2 50%, #00e8f3 60%, #00dff5 70%, #00d7f9 80%, #00cefd 90%, #00c6ff 100%);
+	
+	border-radius: calc(1.25rem - 1px) calc(1.25rem - 1px) 0 0 !important;
+}
+.dropdown-menu{
+	border-radius: 1.25rem !important;
+}
+.dropdown-item{
+	border-radius: 1rem !important;
+}
+.bg-dark-green{
+	background-color: #022329 !important;
+}
+.modal-content{
+	border-radius: 1.25rem !important;
+}
+.modal-header{
+	border-top-left-radius: calc(1.25rem - 1px) !important;
+	border-top-right-radius: calc(1.25rem - 1px) !important;
+}

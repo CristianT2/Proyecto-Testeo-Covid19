@@ -31,10 +31,11 @@ public class Vacuna {
 	@Column(name = "id_nombre")
 	private String nombre;
 	
+	@NotEmpty(message = "Ingrese una descripción de la vacuna.")
 	@Column(name = "descripcion")
 	private String descripcion;
 	
-	@Column(name = "imagen")
+	@Column(name = "imagen", columnDefinition = "MEDIUMBLOB")
 	private String image;
 	
 	@OneToMany(mappedBy = "vacuna", cascade = CascadeType.ALL)

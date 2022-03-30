@@ -11,9 +11,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
 /**
@@ -63,8 +66,10 @@ public class TesteoPersona {
 	@Column(name = "resultado")
 	private String resultado;
 	
+	//@NotEmpty(message = "Ingrese la fecha y hora del testeo.")
 	@Column(name = "fecha_hora")
-	private LocalDateTime fechaHora;
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
+	private LocalDateTime fechaHora = LocalDateTime.now();
 	
 	@NotNull(message = "Seleccione una opcion.")
 	@ManyToOne()

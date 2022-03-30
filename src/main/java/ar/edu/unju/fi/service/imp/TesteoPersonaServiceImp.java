@@ -56,11 +56,13 @@ public class TesteoPersonaServiceImp implements ITesteoPersonaService{
 		List<TesteoPersona> testeos = new ArrayList<TesteoPersona>();
 		
 		if(!resultado.isEmpty() && !barrio.isEmpty()){
-			testeos = testeoRepository.findByResultadoAndBarrioLike(resultado, barrio); 
+			testeos = testeoRepository.findByResultadoAndBarrioNombreLike(resultado, barrio); 
 		}else if(!resultado.isEmpty() && barrio.isEmpty()){
 			testeos = testeoRepository.findByResultadoLike(resultado);
 		}else if(resultado.isEmpty() && !barrio.isEmpty()){
-			testeos = testeoRepository.findByBarrioLike(barrio);
+			testeos = testeoRepository.findByBarrioNombreLike(barrio);
+		}else if(resultado.isEmpty() && barrio.isEmpty()) {
+			testeos = testeoRepository.findAll();
 		}
 		
 		return testeos;
