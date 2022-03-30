@@ -10,12 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unju.fi.model.Barrio;
@@ -49,6 +47,7 @@ public class VacunacionPersonaController {
 	
 	@GetMapping("/vacunaciones/nuevo")
 	public String getVacunacionFormPage(Model model) {
+		
 		this.barrios = barrioService.getBarrios();
 		this.vacunas = vacunaService.getVacunas();
 		this.allPerSalud = personalSaludService.getAllPersonalSalud();
@@ -68,7 +67,7 @@ public class VacunacionPersonaController {
 		if(result.hasErrors()) {
 			modelView = new ModelAndView("nuevoVacunacion");
 			modelView.addObject("barrios", barrioService.getBarrios());
-			modelView.addObject("Vacunas", vacunaService.getVacunas());
+			modelView.addObject("vacunas", vacunaService.getVacunas());
 			modelView.addObject("personalSalud", personalSaludService.getAllPersonalSalud());
 			return modelView;
 		}else {
@@ -80,7 +79,7 @@ public class VacunacionPersonaController {
 			model.addAttribute("mensaje", mensaje);
 			model.addAttribute("personaVacunada", vacunacionService.getVacunacionPersona());
 			modelView.addObject("barrios", barrios);
-			modelView.addObject("Vacunas", vacunas);
+			modelView.addObject("vacunas", vacunas);
 			modelView.addObject("personalSalud", allPerSalud);
 			vacunacionService.addVacunacion(vacunacionPersona);
 			
@@ -91,13 +90,13 @@ public class VacunacionPersonaController {
 	@GetMapping("/vacunaciones/lista")
 	public String getListaVacunadosPage(Model model) {
 			
-		model.addAttribute("personaVacunada", vacunacionService.getVacunacionPersona());
+		model.addAttribute("vacunacionPersona", vacunacionService.getVacunacionPersona());
 		model.addAttribute("personasVacunadas", vacunacionService.getPersonasVacunadas());
 			
 		return "listavacunacion";
 	}
 	
-	@PutMapping("/vacunaciones/editar/{documento}")
+	@GetMapping("/vacunaciones/editar/{documento}")
 	public ModelAndView editarPersonaVacunada(Model model, @PathVariable(name = "documento") String documento) {
 		
 		this.barrios = barrioService.getBarrios();
@@ -108,17 +107,17 @@ public class VacunacionPersonaController {
 		modelView.addObject("barrios", barrios);
 		modelView.addObject("vacunas", vacunas);
 		modelView.addObject("personalSalud", allPerSalud);
-		model.addAttribute("personaVacunada", personaVacunada);
+		model.addAttribute("vacunacionPersona", personaVacunada);
 		
 		return modelView;
 	}
 	
-	@DeleteMapping("/vacunaciones/eliminar/{documento}")
+	@GetMapping("/vacunaciones/eliminar/{documento}")
 	public String eliminarPersonaVacunada(@PathVariable(name = "documento") String documento) {
 		
 		vacunacionService.deleteVacunacion(documento);
 		
-		return "redirect:/listavacunacion";
+		return "redirect:/vacunaciones/lista";
 	}
 	
 	@GetMapping("/vacunaciones/seleccionar/{documento}")
@@ -136,7 +135,7 @@ public class VacunacionPersonaController {
 	@GetMapping("/vacunaciones/buscar")
 	public String filtrarPersonasVacunadas(Model model, @ModelAttribute VacunacionPersona vacunacionPersona) {
 		
-		model.addAttribute("personaVacunada", vacunacionService.getVacunacionPersona());
+		model.addAttribute("vacunacionPersona", vacunacionService.getVacunacionPersona());
 		model.addAttribute("personasVacunadas", vacunacionService.searchVacunacionPersona(vacunacionPersona.getBarrio().getNombre(), vacunacionPersona.getVacuna().getNombre()));
 		
 		return "listavacunacion";

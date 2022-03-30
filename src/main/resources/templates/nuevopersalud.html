@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:insert="layout/head :: head">
+		<meta content="text/html" charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	</head>
+	<body>
+		<div></div>
+		<div th:if="${mensaje!=null}" class="alert alert-success alert-dismissible fade show" role="alert">
+		  	<strong th:text="${mensaje}"></strong><a class="alert-link" href="/personaldeSalud/lista"> Ver tabla</a>
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+		</div>
+		<div class="container">
+			<div class= "row justify-content-md-center">
+				<div class= "col-md-9">
+					<div class="card col-md-11">
+						<h2 class="card-header text-center fw-bold">Registro de Personal</h2>
+					  	<div class="card-body">
+					    	<form th:action="@{/personaldeSalud/guardar}" th:object="${personalSalud}" method="POST" enctype="multipart/form-data">
+					    		<div class="row mb-3">
+									<label for="nombre" class="col-sm-3 col-form-label fw-bold ps-4">Nombre</label>
+								    <div class="col-sm-9">
+								    	<!-- Message validation -->
+										<div class="d-flex align-items-center" th:if="${#fields.hasErrors('nombre')}">
+											<i class="bi bi-exclamation-circle ps-2" style="color:red"></i>
+											<span class="form-text text-danger ps-1" th:errors="*{nombre}" ></span>
+										</div>
+								    	<input type="text" class="form-control rounded-pill" th:field="*{nombre}" id="nombreRol" placeholder="Ingrese su nombre/s." title="Ingrese su nombre/s"> 									    	
+								    </div>
+								</div>
+								<div class="row mb-3">
+									<label for="apellido" class="col-sm-3 col-form-label fw-bold ps-4">Apellido</label>
+								    <div class="col-sm-9">
+								    	<!-- Message validation -->
+										<div class="d-flex align-items-center" th:if="${#fields.hasErrors('apellido')}">
+											<i class="bi bi-exclamation-circle ps-2" style="color:red"></i>
+											<span class="form-text text-danger ps-1" th:errors="*{apellido}" ></span>
+										</div>
+								    	<input type="text" class="form-control rounded-pill" th:field="*{apellido}" id="apellido" placeholder="Ingrese su apellido/s." title="Ingrese su apellido/s."> 									    	
+								    </div>
+								</div>
+								<div class="row mb-3">
+									<label for="dni" class="col-sm-3 col-form-label fw-bold ps-4">D.N.I.</label>
+								    <div class="col-sm-9">
+								    	<!-- Message validation -->
+										<div class="d-flex align-items-center" th:if="${#fields.hasErrors('documento')}">
+											<i class="bi bi-exclamation-circle ps-2" style="color:red"></i>
+											<span class="form-text text-danger ps-1" th:errors="*{documento}" ></span>
+										</div>
+								    	<input type="text" class="form-control rounded-pill" th:field="*{documento}" id="dni" placeholder="Ingrese su número de documento." title="Ingrese su número de documento."> 									    	
+								    </div>
+								</div>
+								<div class="row mb-3">
+									<label for="telefono" class="col-sm-3 col-form-label fw-bold ps-4">Teléfono</label>
+								    <div class="col-sm-9">
+								    	<!-- Message validation -->
+										<div class="d-flex align-items-center" th:if="${#fields.hasErrors('telefono')}">
+											<i class="bi bi-exclamation-circle ps-2" style="color:red"></i>
+											<span class="form-text text-danger ps-1" th:errors="*{telefono}" ></span>
+										</div>
+								    	<input type="number" class="form-control rounded-pill" th:field="*{telefono}" id="numtel" placeholder="Ingrese su número telefonico." title="Ingrese su número telefonico."> 									    	
+								    </div>
+								</div>
+								<div class="row mb-3">
+									<label for="email" class="col-sm-3 col-form-label fw-bold ps-4">Email</label>
+								    <div class="col-sm-9">
+								    	<!-- Message validation -->
+										<div class="d-flex align-items-center" th:if="${#fields.hasErrors('email')}">
+											<i class="bi bi-exclamation-circle ps-2" style="color:red"></i>
+											<span class="form-text text-danger ps-1" th:errors="*{email}" ></span>
+										</div>
+								    	<input type="email" class="form-control rounded-pill" th:field="*{email}" id="email" placeholder="Ingrese su correo electronico." title="Ingrese su correo electronico."> 									    	
+								    </div>
+								</div>
+								<div class="row mb-3">
+									<label for="rol" class="col-sm-3 col-form-label fw-bold ps-4">Rol</label>
+								    <div class="col-sm-9">
+								    	<!-- Message validation -->
+										<div class="d-flex align-items-center" th:if="${#fields.hasErrors('rol')}">
+											<i class="bi bi-exclamation-circle ps-2" style="color:red"></i>
+											<span class="form-text text-danger ps-1" th:errors="*{rol}" ></span>
+										</div>
+								    	<select class="form-select rounded-pill" id="rol" th:field="*{rol}">
+								    		<option value="">Seleccione una opción.</option>
+											<option th:each="rol : ${roles}" th:value="${rol.nombreRol}" th:text="${rol.nombreRol}"></option>
+										</select>
+								    </div>
+								</div>
+								<div class="row mb-3">
+									<label for="usuario" class="col-sm-3 col-form-label fw-bold ps-4">Usuario</label>
+									<div class="col-sm-9">
+										<!-- Message validation -->
+										<div class="d-flex align-items-center" th:if="${#fields.hasErrors('usuario')}">
+											<i class="bi bi-exclamation-circle ps-2" style="color:red"></i>
+											<span class="form-text text-danger ps-1" th:errors="*{usuario}" ></span>
+										</div>
+										<input type="text" class="form-control rounded-pill" th:field="*{usuario}" id="descripcion" placeholder="Ingrese un nombre de usuario." title="Ingrese un nombre de usuario.">																
+									</div>
+								</div>
+								<div class="row mb-3">
+									<label for="password" class="col-sm-3 col-form-label fw-bold ps-4">Contraseña</label>
+								    <div class="col-sm-9">
+								    	<!-- Message validation -->
+										<div class="d-flex align-items-center" th:if="${#fields.hasErrors('password')}">
+											<i class="bi bi-exclamation-circle ps-2" style="color:red"></i>
+											<span class="form-text text-danger ps-1" th:errors="*{password}" ></span>
+										</div>
+								    	<input type="password" class="form-control rounded-pill" th:field="*{password}" id="email" placeholder="Ingrese una contraseña." title="Ingrese una contraseña."> 									    	
+								    </div>
+								</div>
+					    		<div class="pt-2 text-center">
+									<button type="reset"
+										class="btn btn-danger rounded-pill">
+										Cancelar <i class="bi bi-x-circle-fill"></i>
+									</button>
+									<button type="submit"
+										class="btn btn-success rounded-pill">
+										Guardar <i class="bi bi-check-circle-fill"></i>
+									</button>
+								</div>
+					    	</form>
+					  	</div>
+					</div>
+				</div>
+				<div class="col-md-3 bg-dark">
+					
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

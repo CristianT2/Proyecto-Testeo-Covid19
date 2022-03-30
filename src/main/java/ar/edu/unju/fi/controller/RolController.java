@@ -8,12 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unju.fi.model.Rol;
@@ -61,7 +59,7 @@ public class RolController {
 		return "listaroles"; 
 	}
 	
-	@PutMapping("/rol/editar/{nombreRol}")
+	@GetMapping("/rol/editar/{nombreRol}")
 	public ModelAndView editarRol(@PathVariable String nombreRol, Model model) {
 		
 		Optional<Rol> rolOp = rolService.getRol(nombreRol);
@@ -71,7 +69,7 @@ public class RolController {
 		return modelView;
 	}
 	
-	@DeleteMapping("/rol/eliminar/{nombreRol}")
+	@GetMapping("/rol/eliminar/{nombreRol}")
 	public String eliminarRol(@PathVariable String nombreRol, Model model) {
 		
 		rolService.deleteRol(nombreRol);

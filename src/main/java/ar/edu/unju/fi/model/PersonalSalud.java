@@ -61,6 +61,10 @@ public class PersonalSalud {
 	@Column(name = "telefono")
 	private String telefono;
 	
+	@NotEmpty(message = "Ingrese su número de documento.")
+	@Column(name="documento")
+	private String documento;
+	
 	@NotNull(message = "Seleccione un rol.")
 	@ManyToOne()
 	@JoinColumn(name = "rol_id")
@@ -89,8 +93,9 @@ public class PersonalSalud {
 	 * @param rol
 	 * @param email 
 	 * @param telefono 
+	 * @param documento 
 	 */
-	public PersonalSalud(Integer id, String usuario, String password, String nombre, String apellido, Rol rol, String email, String telefono) {
+	public PersonalSalud(Integer id, String usuario, String password, String nombre, String apellido, Rol rol, String email, String telefono, String documento) {
 		super();
 		this.id = id;
 		this.usuario = usuario;
@@ -100,6 +105,7 @@ public class PersonalSalud {
 		this.rol = rol;
 		this.email = email;
 		this.telefono = telefono;
+		this.documento = documento;
 	}
 	
 	//Getters y Setters
@@ -244,10 +250,27 @@ public class PersonalSalud {
 		this.vacunacionPersona = vacunacionPersona;
 	}
 
+	/**
+	 * @return the documento
+	 */
+	public String getDocumento() {
+		return documento;
+	}
+
+	/**
+	 * @param documento the documento to set
+	 */
+	public void setDocumento(String documento) {
+		this.documento = documento;
+	}
+
 	@Override
 	public String toString() {
 		return "PersonalSalud [id=" + id + ", usuario=" + usuario + ", password=" + password + ", nombre=" + nombre
-				+ ", apellido=" + apellido + ", email=" + email + ", telefono=" + telefono + ", rol=" + rol + "]";
+				+ ", apellido=" + apellido + ", email=" + email + ", telefono=" + telefono + ", documento=" + documento
+				+ ", rol=" + rol + "]";
 	}
+
+	
 	
 }

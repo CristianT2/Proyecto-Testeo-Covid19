@@ -12,7 +12,7 @@ public interface ITesteoPersonaRepository extends CrudRepository<TesteoPersona, 
 	public List<TesteoPersona> findAll();
 	public Optional<TesteoPersona> findByDocumento(String documento);
 	public List<TesteoPersona> findByResultadoLike(String resultado);
-	public List<TesteoPersona> findByBarrioLike(String barrio);
-	public List<TesteoPersona> findByResultadoAndBarrioLike(String resultado, String Barrio);
+	public List<TesteoPersona> findByBarrioNombreLike(String barrio);
+	public List<TesteoPersona> findByResultadoAndBarrioNombreLike(String resultado, String Barrio);
 
 }

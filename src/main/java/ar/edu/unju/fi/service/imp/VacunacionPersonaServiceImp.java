@@ -56,11 +56,13 @@ public class VacunacionPersonaServiceImp implements IVacunacionPersonaService{
 		List<VacunacionPersona> vacunaciones = new ArrayList<VacunacionPersona>();
 		
 		if(!barrio.isEmpty() && !vacuna.isEmpty()) {
-			vacunaciones = vacunacionRepository.findByBarrioAndVacunaLike(barrio, vacuna);
+			vacunaciones = vacunacionRepository.findByBarrioNombreAndVacunaNombreLike(barrio, vacuna);
 		}else if(!barrio.isEmpty() && vacuna.isEmpty()) {
-			vacunaciones = vacunacionRepository.findByBarrioLike(barrio);
+			vacunaciones = vacunacionRepository.findByBarrioNombreLike(barrio);
 		}else if(barrio.isEmpty() && !vacuna.isEmpty()) {
-			vacunaciones = vacunacionRepository.findByVacunaLike(vacuna);
+			vacunaciones = vacunacionRepository.findByVacunaNombreLike(vacuna);
+		}else if(barrio.isEmpty() && vacuna.isEmpty()) {
+			vacunaciones = vacunacionRepository.findAll();
 		}
 		
 		return vacunaciones;

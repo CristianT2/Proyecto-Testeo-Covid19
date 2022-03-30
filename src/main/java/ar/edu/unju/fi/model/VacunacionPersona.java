@@ -14,6 +14,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
 /**
@@ -64,9 +65,9 @@ public class VacunacionPersona {
 	@JoinColumn(name = "vacuna_id")
 	private Vacuna vacuna;
 	
-	
+	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
 	@Column(name = "fecha_hora")
-	private LocalDateTime fechaHora;
+	private LocalDateTime fechaHora = LocalDateTime.now();
 	
 	@NotNull(message = "Seleccione una opcion.")
 	@ManyToOne()

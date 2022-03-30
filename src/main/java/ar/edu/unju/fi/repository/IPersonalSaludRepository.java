@@ -12,8 +12,8 @@ public interface IPersonalSaludRepository extends CrudRepository<PersonalSalud, 
 	public List<PersonalSalud> findAll();
 	public Optional<PersonalSalud> findById(Integer id);
 	public List<PersonalSalud> findByApellidoLike(String apellido);
-	public List<PersonalSalud> findByRolLike(String rol);
-	public List<PersonalSalud> findByApellidoAndRolLike(String apellido, String rol);
+	public List<PersonalSalud> findByRolNombreRolLike(String rol);
+	public List<PersonalSalud> findByApellidoAndRolNombreRolLike(String apellido, String rol);
 	
 
 }

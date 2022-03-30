@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:insert="layout/head :: head">
+		<meta content="text/html" charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	</head>
+	<body>
+		<div class="container">
+			<div th:if="${mensajeElim!=null}" class="alert alert-danger alert-dismissible fade show col-md-11 ms-1" role="alert">
+				<div class="d-flex align-items-center">
+					<i class="bi bi-exclamation-triangle-fill"></i>
+					<h4 class="alert-heading ps-2">Atencion!!</h4>
+				</div>
+				<p th:text="${mensajeElim}"></p>
+				<hr>
+				<a class="alert-link" th:href="@{/personaldeSalud/eliminar/}+${id}">Confirmar</a>
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
+			<a th:href="@{/personaldeSalud/nuevo}" class="ms-2">
+				<button type="button" class="btn btn-primary btn-sm">Registrar Personal de Salud</button>
+			</a>
+			<div class="row justify-content-md-center">
+				<div class="col-md-10 ">
+					<div class="card mt-4 mb-5 shadow-lg">
+						<div class="card-header text-center text-white">
+							<h2>Busqueda de Personal de Salud</h2>
+						</div>
+						<div class="card-body">
+							<form th:action="@{/personaldeSalud/buscar}" th:object="${personalSalud}" method="GET">
+								<div class="row g-3">
+									<div class="col-md-5">
+										<label for="apellido" class=" fw-bold mx-4">Apellido</label>
+										<input type="text" class="form-control rounded-pill" th:field="*{apellido}" id="apellido" placeholder="Ingrese apellido" title="Ingrese apellido">
+									</div>
+									<div class="col-md-5">
+										<label for="rol" class="fw-bold mx-4">Rol</label>
+										<input type="text" class="form-control rounded-pill" th:field="*{rol.nombreRol}" id="rol" value="none" placeholder="Ingrese rol" title="Ingrese rol">
+									</div>
+									<div class="col-md-2">
+									   <button type="submit" class="btn btn-primary mt-4">Buscar</button>
+								   </div>
+								</div>
+							</form>
+						</div>
+					</div>			
+				</div>
+				<div class="table-responsive">
+					<h2 class="p-2 fw-bolder">Lista de Empleados</h2>
+					<table class="table table-bordered table-hover table align-middle ">
+					 	<thead class="text-center table-light fs-5">
+							<tr>
+	                        	<th scope="col">Nombre</th>
+								<th scope="col">Apellido</th>
+								<th scope="col">D.N.I.</th>
+								<th scope="col">Telefono</th>
+								<th scope="col">Email</th>
+								<th scope="col">Rol/Cargo</th>
+								<th scope="col">Acciones</th>
+	                        </tr>		
+					  	</thead>
+					  	<tbody>
+					    	<tr th:each="perSalud:${allPersonalSalud}" class="text-center">
+								<td th:text="${perSalud.nombre}"></td>
+								<td th:text="${perSalud.apellido}" ></td>
+								<td th:text="${perSalud.documento}" ></td>
+								<td th:text="${perSalud.telefono}" ></td>
+								<td th:text="${perSalud.email}" ></td>
+								<td th:text="${perSalud.rol.nombreRol}"></td>
+	                            <td >
+									<div class="btn-group btn-group-sm" role="group">
+										<a th:href="@{/personaldeSalud/editar/}+${perSalud.id}" type="button">
+											<i class="bi bi-pencil-fill pe-2"></i>
+										</a>
+										<a th:href="@{/personaldeSalud/seleccionar/}+${perSalud.id}" type="button">
+											<i class="bi bi-trash-fill ps-1" style="color:red"></i>	
+										</a>		
+									</div>
+								</td>                            
+	                   	 	</tr>
+					  	</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
