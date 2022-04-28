@@ -5,7 +5,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 	</head>
 	<body>
-		<div class="container ">
+		<div th:insert = "layout/header :: header" class="mb-3"></div>
+		<div class="container">
 			<div th:if="${msjEliminar!=null}" class="alert alert-danger alert-dismissible fade show col-md-11 ms-1" role="alert">
 				<div class="d-flex align-items-center">
 					<i class="bi bi-exclamation-triangle-fill"></i>
@@ -20,7 +21,7 @@
 			<a th:href="@{/vacunaciones/nuevo}" class="ms-2">
 				<button type="button" class="btn btn-primary btn-sm">Registrar nuevo Testeo</button>
 			</a>
-			<div class="row justify-content-md-center">
+			<div class="row justify-content-md-center mt-4">
 				<div class="col-md-10 ">
 					<div class="card mt-4 mb-5 shadow-lg">
 						<div class="card-header text-center text-white">
@@ -91,5 +92,6 @@
 				</div>
 			</div>
 		</div>
+		<div th:insert = "layout/footer :: footer"></div>
 	</body>	
 </html>

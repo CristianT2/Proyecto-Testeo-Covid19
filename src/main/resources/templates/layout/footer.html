@@ -1,0 +1,26 @@
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta content="text/html" charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+	<div id= "footer" th:fragment = "footer" class="mt-4">
+		<footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+		    <div class="col-md-4 d-flex align-items-center ms-3">
+		      <a href="/clinica/inicio" class="me-3 mb-md-0 text-white text-decoration-none lh-1">
+		      	<img alt="" th:src="@{/images/logoClinic.png}" class="img-fluid" style="width:25px;height:25px">
+		      </a>
+		      <span >2022 Clinica Del Sol, All rights reserved ©.</span>
+		    </div>
+		
+		    <ul class="nav col-md-4 justify-content-md-end list-unstyled d-flex me-3">
+		      <li class="ms-3"><a class="text-white" href="#"><i class="bi bi-twitter"></i></a></li>
+		      <li class="ms-3"><a class="text-white" href="#"><i class="bi bi-instagram"></i></a></li>
+		      <li class="ms-3"><a class="text-white" href="#"><i class="bi bi-facebook"></i></a></li>
+		    </ul>
+		</footer>
+	</div>
+
+</body>
+</html>
