@@ -10,19 +10,12 @@ body{
 	
 	border-radius: calc(1.25rem - 1px) calc(1.25rem - 1px) 0 0 !important;
 }
-.dropdown-menu{
-	border-radius: 1.25rem !important;
+
+#footer{
+	background-color: #040D50;
+	color: white; 
 }
-.dropdown-item{
-	border-radius: 1rem !important;
-}
-.bg-dark-green{
-	background-color: #022329 !important;
-}
-.modal-content{
-	border-radius: 1.25rem !important;
-}
-.modal-header{
-	border-top-left-radius: calc(1.25rem - 1px) !important;
-	border-top-right-radius: calc(1.25rem - 1px) !important;
+#texto-borde {
+  -webkit-text-stroke: 0.2px white;
+  color: transparent; 
 }

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="layout/head :: head">
+<meta content="text/html" charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <div th:insert="layout/header :: header"></div>
+  <div class="card ">
+  	<img th:src="@{/images/clinic.jpg}" class="img-fluid d-block w-100" alt="" height="400">
+	<div class="card-img-overlay">
+	   <div class="position-absolute top-50 start-50 translate-middle">
+	   		<div class="d-none d-lg-block d-print-block">
+	   			<h3 class="fw-bold display-3" style="color:#040D50;" id="texto-borde">Clinica Del Sol</h3>
+	   			<a id="boton" class="btn btn-outline-info d-grid gap-2 col-4 mx-auto" href="#info" role="button">Saber más</a>
+	   		</div>
+	   		<div class="d-lg-none">
+	   			<h2 class="fw-bold display-5" style="color:#040D50;" id="texto-borde">Clinica Del Sol</h2>
+	   		</div>
+	   </div>
+	    
+	</div>
+  </div>
+
+  <div class="container mt-4 mb-4" id="info">  
+  	<h1>Conocenos</h1>
+  	<h2>Profecionales altamente capacitados.</h2>
+    <!-- Three columns of text below the carousel -->
+    <div class="row">
+      <div class="col-md-4">
+		<img class="img-fluid d-block rounded-circle" style="width: 150px; height: 150px" alt="" th:src="@{/images/medico.jpg}">
+        <h3>Heading</h3>
+        <p>Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p>
+        <p><a class="btn btn-secondary" href="#">View details »</a></p>
+      </div><!-- /.col-lg-4 -->
+      <div class="col-md-4">
+		<img class="img-fluid d-block rounded-circle" style="width: 150px; height: 150px" alt="" th:src="@{/images/medico.jpg}">
+        <h3>Heading</h3>
+        <p>Another exciting bit of representative placeholder content. This time, we've moved on to the second column.</p>
+        <p><a class="btn btn-secondary" href="#">View details »</a></p>
+      </div><!-- /.col-lg-4 -->
+      <div class="col-md-4">
+		<img class="img-fluid d-block rounded-circle" style="width: 150px; height: 150px" alt="" th:src="@{/images/medico.jpg}">
+        <h3>Heading</h3>
+        <p>And lastly this, the third column of representative placeholder content.</p>
+        <p><a class="btn btn-secondary" href="#">View details »</a></p>
+      </div><!-- /.col-lg-4 -->
+    </div><!-- /.row -->
+
+
+    <!-- START THE FEATURETTES -->
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading">Instalaciones de primer nivel.</h2>
+        <p class="lead">Some great placeholder content for the first featurette here. Imagine some exciting prose here.</p>
+      </div>
+      <div class="col-md-5">
+		<img class="img-fluid d-block" alt="" th:src="@{/images/instalciones.jpg}">
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7 order-md-2">
+        <h2 class="featurette-heading">Testeos Covid-19.</h2>
+        <p class="lead">Another featurette? Of course. More placeholder content here to give you an idea of how this layout would work with some actual real-world content in place.</p>
+      </div>
+      <div class="col-md-5 order-md-1">
+		<img class="img-fluid d-block" alt="" th:src="@{/images/testeos.jpg}">
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading">Vacunaciones Covid-19</h2>
+        <p class="lead">And yes, this is the last block of representative placeholder content. Again, not really intended to be actually read, simply here to give you a better view of what this would look like with some actual content. Your content.</p>
+      </div>
+      <div class="col-md-5">
+		<img class="img-fluid d-block" alt="" th:src="@{/images/vacunaciones.jpg}">
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <!-- /END THE FEATURETTES -->
+
+  </div><!-- /.container -->
+
+	<div th:insert="layout/footer :: footer"></div>
+</body>
+</html>
